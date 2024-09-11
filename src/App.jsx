@@ -5,10 +5,10 @@ import { useState } from "react";
 import { ways, differences } from "./data"
 
 function App() {
-  const [ content, setContent] = useState("Нажми на кнопку") 
+  const [ contentType, setContentType] = useState(null) 
 
   function handleClick(type) {
-    setContent(type)
+    setContentType(type)
   }
 
   return (
@@ -35,7 +35,9 @@ function App() {
           <Button onClick={() => handleClick("easy")}>Доступность</Button>
           <Button onClick={() => handleClick("program")}>Концентрация</Button>
 
-          <p>{differences[content]}</p>
+          { !contentType && <p>Нажми на кнопку</p>}
+          { contentType && <p>{differences[contentType]}</p> }
+
         </section>
       </main>
     </div>  

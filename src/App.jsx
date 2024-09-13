@@ -1,20 +1,32 @@
-import Header from "./components/Header"
-import TeachingSection from "./components/Button/TeachingSection";
-import DifferencesSection from "./components/Button/DifferencesSection";
-import IntroSection from "./components/Button/introSection";
-
+import Header from "./components/Header/Header";
+import TeachingSection from "./components/TeachingSection";
+import DifferencesSection from "./components/DifferencesSection";
+import IntroSection from "./components/IntroSection";
+import TabsSection from "./components/TabsSection";
+import FeedbackSection from "./components/FeedbackSection";
+import { useState } from "react";
 
 function App() {
+  const [tab, setTab] = useState("feedback");
+
   return (
     <div>
       <Header />
       <main>
-          <IntroSection />
-          <TeachingSection />
-          <DifferencesSection />
+        <IntroSection />
+        <TabsSection active={tab} onChange={(current) => setTab(current)} />
+
+        {tab == "main" && (
+          <>
+            <TeachingSection />
+            <DifferencesSection />
+          </>
+        )}
+
+        {tab == "feedback" && <FeedbackSection />}
       </main>
-    </div>  
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
